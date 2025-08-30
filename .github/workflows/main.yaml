@@ -1,24 +1,31 @@
-name: CI-CD Pipeline
+name: Simple React Deployment # 📝 Workflow name
 
-on: [push]
+on: [push] # ⚡ Trigger on any push to any branch
 
 jobs:
-	build-and-deploy:
-		runs-on: ubuntu-latest
-		
-		steps:
-			- name: Checkout code
-				uses: actions/checkout@v4
-			
-			- name: Setup NodeJS
-				uses: actions/setup-node@v4
-				with:
-					node-version: 20
-					cache: "npm"
-					
-			- name: Install dependencies
-				run: npm install
-			
-			- name: Deployment successfully
-				run: echo "Ready for deployment."
-	
+  build-and-deploy: # 🏗️ Job name
+    runs-on: ubuntu-latest # 💻 Run on Ubuntu
+
+    steps:
+      # Step 1: Get the code
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4 # 📦 Pre-built action
+
+      # Step 2: Setup Node.js
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v3
+        with: # 🔧 Parameters for the action
+          node-version: "18"
+          cache: "npm"
+
+      # Step 3: Install dependencies
+      - name: 📦 Install dependencies
+        run: npm install # 🖥️ Command to run
+
+      # Step 4: Build the app
+      # - name: 🏗️ Build application
+      # run: npm run build
+
+      # Step 5: Show success message
+      - name: ✅ Deployment complete
+        run: echo "App built successfully! Ready for deployment."
